@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Test;
 
 use App\Models\Task;
@@ -9,13 +8,15 @@ use Illuminate\Routing\Controller;
 
 class TaskController extends Controller
 {
-
-    public function index(){
+    public function index()
+    {
         return view('tasks', [
             'tasks' => Task::orderBy('created_at', 'asc')->get()
         ]);
     }
-    public function save(Request $request){
+
+    public function save(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
         ]);
@@ -29,7 +30,9 @@ class TaskController extends Controller
         $task->save();
         return redirect('test/task');
     }
-    public function delete(){
+
+    public function delete()
+    {
         $id = intval(request()->id);
         Task::findOrFail($id)->delete();
         return redirect('test/task');
