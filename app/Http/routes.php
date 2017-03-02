@@ -15,6 +15,8 @@
     return view('welcome');
 });*/
 
+Route::get('/', 'OfficeController@index');
+
 // 加载路由文件
 foreach (glob(app_path('Http/Routes').'/*/*.php') as $file) {
     require_once $file;
